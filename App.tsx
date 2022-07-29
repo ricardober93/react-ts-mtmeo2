@@ -8,7 +8,7 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" index element={<Home />} />
         <Route path="/detail/:id" element={<Detail />} />
       </Routes>
     </Router>
