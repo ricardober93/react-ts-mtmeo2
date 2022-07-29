@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { ICharacters } from '../models/characters.model';
+import { ICharacter } from '../models/character.model';
 
 export default function useMarvel() {
-  const [characters, setCharacters] = useState<ICharacters[]>([]);
+  const [characters, setCharacters] = useState<ICharacter[]>([]);
 
   const getAllChacters = () => {
     //implement fecth
