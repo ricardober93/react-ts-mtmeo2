@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ICharacter } from '../models/character.model';
 
 export default function useMarvel() {
@@ -11,6 +11,10 @@ export default function useMarvel() {
   const getOneChacter = () => {
     //implement fecth
   };
+
+  useEffect(() => {
+    getAllChacters();
+  }, []);
 
   return {
     getAllChacters,
