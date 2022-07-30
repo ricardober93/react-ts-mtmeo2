@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import useMarvel from '../hooks/useMarvel';
 
 export default function Home() {
-  const { characters } = useMarvel();
+  const { characters } = useMarvel(undefined);
   return (
     <div>
       <h1>hola home</h1>

@@ -1,34 +1,35 @@
 import * as React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import useMarvel from '../hooks/useMarvel';
+import MapComic from '../_common/MapComic';
 
 export default function Detail() {
   let params = useParams();
-  let navigate = useNavigate();
-  const { character } = useMarvel(params.id);
-  const goBack = () => {
-    navigate(-1);
-  };
+  const { character, goBack } = useMarvel(params.id);
 
   return (
     <div>
       <p onClick={goBack}> atras</p>
-      <h1>hola detail {params.id} </h1>
+      <h1>detail {params.id} </h1>
 
       <h1>
-        {' '}
         {character
           ? character.map((c) => (
               <div key={c.id}>
                 <p> {c.name} </p>
                 <p> {c.description} </p>
+                <p>
+                  {'COMIC: '}
+                  <MapComic comics={c.comics.items} />
+                </p>
                 <img
-                  src={c.thumbnail.path + c.thumbnail.extension}
-                  alt="imagen"
+                  width="100px"
+                  src={c.thumbnail.path + '.' + c.thumbnail.extension}
+                  alt="imagen "
                 />
               </div>
             ))
-          : 'NO hay datos'}{' '}
+          : 'NO hay datos'}
       </h1>
     </div>
   );

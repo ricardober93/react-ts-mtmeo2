@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { ICharacter } from '../models/character.model';
+import { useNavigate } from 'react-router-dom';
 
-export default function useMarvel(id: string) {
+export default function useMarvel(id: string | undefined) {
+  let navigate = useNavigate();
   const [characters, setCharacters] = useState<ICharacter[]>([]);
   const [character, setCharacter] = useState<ICharacter[]>([]);
 
@@ -24,9 +26,12 @@ export default function useMarvel(id: string) {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setCharacter(data.data.results);
       });
+  };
+
+  const goBack = () => {
+    navigate(-1);
   };
 
   useEffect(() => {
@@ -35,12 +40,11 @@ export default function useMarvel(id: string) {
 
   useEffect(() => {
     getOneChacter(id);
-  }, []);
+  }, [id]);
 
   return {
     character,
-    getAllChacters,
-    getOneChacter,
     characters,
+    goBack,
   };
 }
